@@ -10,7 +10,5 @@ Demo sobre Heroku: http://demoinvent.herokuapp.com/
 
 Usuario: invitado
 Password: invitado
-=======
-Usuario: demo
-Password: demo
+
 
