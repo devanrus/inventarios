@@ -7,7 +7,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'f3f47ad863a764f02bcb3de116e934e0e6ab3399a8501a0c5ee63e035d4a8e97e6216a1030e15c93414ee03c74d5418cc7d02f26f9a656834e9c58dde505e338'
-
+  config.secret_key = '3b60cfa85f40aeb7a10a43e8165c745809872660ec59751fbee853fa3a3730ea462b454b73aa91eb1bafa27a92140603a6b647859abb34ca7a4154c8a1eb0467'
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -32,6 +32,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [:email]
+  config.authentication_keys = [:login]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
