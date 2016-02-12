@@ -4,6 +4,8 @@ Sistema de Inventarios desarrollado con Ruby y Ruby on Rails
 
 Template: http://binarycart.com/bclivedemos/01-05-2014/v1/bs-binary-admin/index.html
 
+Template Login: http://azmind.com/2015/04/19/bootstrap-login-forms/
+
 Demo sobre Heroku: http://demoinvent.herokuapp.com/
 
 Usuario: invitado
