@@ -1,0 +1,37 @@
+<% content_for :subtitulo do %>
+  Articulos
+<% end %>
+
+<%= link_to new_articulo_path, class: "btn btn-success"  do%>
+  <i class="glyphicon glyphicon-plus"></i> Crear Artículo
+<% end %>
+
+<%= link_to articulos_path(:format => 'pdf'), class: "btn btn-warning", :target => "_blank"  do%>
+  <i class="glyphicon glyphicon-print"></i> Imprimir Inventario
+<% end %>
+
+<br>
+<br>
+<table class="table table-striped">
+  <thead>
+    <th>Código del Artículo</th>
+    <th>Descripción</th>
+    <th>Disponible</th>
+    <th>Opciones</th>
+  </thead>
+  <tbody>
+    <% @articulos.each do |articulo| %>
+      <tr>
+        <td> <%= articulo.codigo %> </td>
+        <td> <%= articulo.descripcion %> </td>
+        <td> <%= number_with_delimiter(articulo.existencia) %> </td>
+        <td>
+          <%= link_to edit_articulo_path(articulo), class: "btn btn-primary" do%>
+            <i class="glyphicon glyphicon-edit"></i> Editar
+          <% end %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>

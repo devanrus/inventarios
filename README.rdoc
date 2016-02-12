@@ -1,0 +1,14 @@
+== README
+
+Sistema de Inventarios desarrollado con Ruby y Ruby on Rails
+
+Template: http://binarycart.com/bclivedemos/01-05-2014/v1/bs-binary-admin/index.html
+
+Demo sobre Heroku: http://demoinvent.herokuapp.com/
+
+Usuario: invitado
+Password: invitado
+=======
+Usuario: demo
+Password: demo
+

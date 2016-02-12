@@ -1,0 +1,28 @@
+<% content_for :subtitulo do %>
+  Departamentos
+<% end %>
+<%= link_to new_departamento_path, class:"btn btn-success" do%>
+  <i class="glyphicon glyphicon-plus"></i> Crear Departamento
+<% end %>
+
+<br><br>
+<table class="table table-striped">
+  <thead>
+    <th>Nombre</th>
+    <th>Titular</th>
+    <th>Opciones</th>
+  </thead>
+  <tbody>
+    <% @departamentos.each do |departamento| %>
+      <tr>
+        <td> <%= departamento.nombre %> </td>
+        <td> <%= departamento.titular %> </td>
+        <td>
+          <%= link_to edit_departamento_path(departamento), class: "btn btn-primary" do%>
+            <i class="glyphicon glyphicon-edit"></i> Editar
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

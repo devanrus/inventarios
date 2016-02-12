@@ -1,0 +1,66 @@
+<% content_for :subtitulo do %>
+  Crear Pedido
+<% end %>
+
+<div class="col-md-12">
+  <%= form_for (@pedido) do |f| %>
+  <% if @pedido.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2><center>!Error al crear el Pedido!</center></h2>
+      <ul>
+      <% @pedido.errors.each_with_index do |msg| %>
+        <li><strong><%= msg[1] %></strong></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="well">
+        <h4>Pedido para:
+          <%= f.collection_select(:departamento_id, Departamento.all, :id, :titular, prompt: "Seleccione Titular del área") %>
+        </h4><br>
+        <table>
+          <thead class="header-table">
+            <tr>
+              <th>
+                <center>Código Artículo</center>
+              </th>
+              <th>
+                <center>Solicitado</center>
+              </th>
+              <th>
+                <center>Surtido</center>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <%= f.fields_for :enviarpedidos do |enviar| %>
+            <tr>
+              <td>
+                <%= enviar.text_field :articulo_id %>
+              </td>
+              <td>
+                <%= enviar.text_field :solicitado %>
+              </td>
+              <td>
+                <%= enviar.text_field :surtido %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table><br>
+        <%= button_tag( :class => "btn btn-success") do %>
+          <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+        <% end %>
+        <%= link_to pedidos_path, class:"btn btn-primary" do%>
+        <i class="glyphicon glyphicon-repeat"></i> Regresar
+        <% end %>
+      </div>
+    </div>
+    <%= f.hidden_field :codigo, :value => @codigo %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  <% end %>
+  </div>
+</div>

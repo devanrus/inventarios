@@ -1,0 +1,40 @@
+<script type="text/javascript">
+$("#demanda_articulo_pie").hide();
+$('#demanda_articulo_pie').highcharts({
+    chart: {
+        width: 450,
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '<b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Artículo',
+        colorByPoint: true,
+        data: [
+          <% @articulos_demanda.each do |demanda|  %>
+          {
+          name: <%= demanda[0] %>,
+          y: <%= demanda[1] %>
+        },
+          <%end%>
+        ]
+    }]
+});
+</script>

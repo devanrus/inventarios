@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventario</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if user_signed_in? %>
+  <div id="wrapper">
+    <%= render "layouts/nav" %>
+    <!-- /. NAV TOP  -->
+    <%= render "layouts/sidebar" %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper" >
+      <div id="page-inner">
+        <div class="row">
+          <div class="col-md-12">
+            <h2> <%= yield :subtitulo %> </h2>
+          </div>
+        </div>
+        <!-- /. ROW  -->
+        <hr />
+        <div class="row">
+          <div class="col-md-12">
+            <%= yield %>
+          </div>
+        </div>
+        <!-- /. ROW CONTENIDO PRINCIPAL -->
+      </div>
+      <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+  </div>
+  <!-- /. WRAPPER  -->
+  <!-- Top content -->
+  <% else %>
+    <%= yield %>
+  <% end %>
+</body>
+</html>

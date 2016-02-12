@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: developer
+  password: developer
+  host: localhost
+  pool: 5
+
+development:
+  <<: *default
+  database: inventario_development
+
+test:
+  <<: *default
+  database: inventario_test
+
+production:
+  <<: *default
+  database: inventario_production
+  username: inventario
+  password: <%= ENV['INVENTARIO_DATABASE_PASSWORD'] %>

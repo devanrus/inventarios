@@ -1,0 +1,25 @@
+<%= form_for(@categoria) do |f| %>
+<% if @categoria.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <h2><center>!Error al crear la Categoria!</center></h2>
+    <ul>
+    <% @categoria.errors.each_with_index do |msg| %>
+      <li><%= msg[1] %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="field">
+    <%= f.label :nombre, class: "control-label" %><br>
+    <%= f.text_field :nombre, class: "form-control" %>
+  </div><br>
+  <div class="actions">
+    <%= button_tag( :class => "btn btn-success") do %>
+      <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+    <% end %>
+    <%= link_to categorias_path, class:"btn btn-primary" do%>
+    <i class="glyphicon glyphicon-repeat"></i> Regresar
+    <% end %>
+  </div>
+<% end %>

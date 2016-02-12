@@ -1,0 +1,47 @@
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Pedidos Recientes</strong></h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <th>Pedido</th>
+          <th>Enviado a</th>
+        </thead>
+        <tbody>
+          <% @ultimos_pedidos.each do |reciente| %>
+            <tr>
+              <td>
+                <%= link_to pedido_path(reciente.pedido_id) do %>
+                  <strong><%= reciente.codigo %></strong>
+                <% end %>
+              </td>
+              <td> <%= reciente.titular %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><strong>Artículos mas Solicitados</strong></h3>
+      <div class="btn-group  pull-right">
+        <button type="button" class="btn btn-default" id="total">Total</button>
+        <button type="button" class="btn btn-default" id="porcentaje">Porcentaje</button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div id="demanda_articulo">
+        <%= render partial: "chart_bar_demanda"%>
+      </div>
+      <div id="demanda_articulo_pie">
+        <%= render partial: "chart_pie_demanda"%>
+      </div>
+    </div>
+  </div>
+</div>

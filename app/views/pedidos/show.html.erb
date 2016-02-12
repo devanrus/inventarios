@@ -1,0 +1,39 @@
+<% content_for :subtitulo do %>
+  Orden Número: <%= @pedido.codigo %>
+<% end %>
+
+Orden Número: <%= @pedido.codigo %><br>
+<hr>
+Elaborado por: <%= @pedido.nomuser %> <%= @pedido.apellidos %><br>
+<hr>
+Solicitado por:<br>
+<%= @pedido.titular %><br>
+<%= @pedido.nombre %><br>
+<hr>
+
+Fecha del Pedido: <%= @pedido.created_at %>
+<hr>
+
+<table class="table table-bordered">
+  <thead>
+    <th>Codigo Producto</th>
+    <th>Descripcion</th>
+    <th>Solicitado</th>
+    <th>Surtido</th>
+  </thead>
+  <tbody>
+    <% @articulos.each do |articulo| %>
+      <tr>
+        <td> <%= articulo.codigo %> </td>
+        <td> <%= articulo.descripcion %></td>
+        <td> <%= articulo.solicitado %> </td>
+        <td> <%= articulo.surtido %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <%= link_to pedido_path(@pedido, :format => 'pdf'), class: "btn btn-primary", :target => "_blank" do%>
+    <i class="glyphicon glyphicon-print"></i> Imprimir Pedido
+  <% end %>
+</div>

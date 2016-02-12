@@ -1,0 +1,25 @@
+<% content_for :subtitulo do %>
+  Crear Departamento
+<% end %>
+
+<div class="col-md-6 well">
+  <%= form_for :departamento, url: departamentos_path(@departamento) do |f| %>
+  <% if @departamento.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2><center>!Error al crear el Departamento!</center></h2>
+      <ul>
+      <% @departamento.errors.each_with_index do |msg| %>
+        <li><%= msg[1] %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.label "Nombre del Departamento", class: "control-label" %>
+    <%= f.text_field :nombre, class: "form-control", placeholder: 'Departamento' %>
+
+    <%= f.label "Nombre del Titular", class: "control-label" %>
+    <%= f.text_field :titular, class: "form-control", placeholder: 'Titular' %>
+    <br>
+    <%= f.submit "Crear Departamento", class: "btn btn-primary" %>
+  <% end %>
+</div>

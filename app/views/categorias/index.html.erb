@@ -1,0 +1,29 @@
+<% content_for :subtitulo do %>
+  Categorías
+<% end %>
+<div class="col-md-6">
+  <%= link_to new_categoria_path, class:"btn btn-success" do%>
+    <i class="glyphicon glyphicon-plus"></i> Crear Categoría
+  <% end %><br><br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @categorias.each do |categoria| %>
+        <tr>
+          <td><%= categoria.nombre %></td>
+          <td>
+            <%= link_to categoria_path(categoria), class: "btn btn-danger", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
+              <i class="glyphicon glyphicon-trash"></i> Borrar
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>

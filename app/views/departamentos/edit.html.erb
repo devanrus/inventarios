@@ -1,0 +1,33 @@
+<% content_for :subtitulo do %>
+  Editar Departamento
+<% end %>
+
+<div class="col-md-6 well">
+  <%= form_for :departamento, url: departamento_path(@departamento), method: :patch do |f| %>
+
+  <% if @departamento.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2><center>!Error al actualizar!</center></h2>
+
+      <ul>
+      <% @departamento.errors.each_with_index do |msg| %>
+        <li><%= msg[1] %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.label :nombre, class: "control-label" %>
+    <%= f.text_field :nombre, class: "form-control" %>
+
+    <%= f.label :titular, class: "control-label" %>
+    <%= f.text_field :titular, class: "form-control" %>
+
+ <br>
+
+    <%= f.submit "Actualizar Departamento", class: "btn btn-primary" %>
+
+  <% end %>
+</div>
+
+<%= link_to 'Regresar', departamento_path %>

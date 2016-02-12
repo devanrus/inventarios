@@ -1,0 +1,32 @@
+<% content_for :subtitulo do %>
+  Pedidos
+<% end %>
+
+<%= link_to new_pedido_path, class: "btn btn-success"  do%>
+  <i class="glyphicon glyphicon-plus"></i> Crear Pedido
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <th>Código</th>
+    <th>Enviado a</th>
+    <th>Opciones</th>
+  </thead>
+  <tbody>
+    <% @pedidos.each do |pedido| %>
+      <tr>
+        <td> <strong><%= pedido.codigo %></strong> </td>
+        <td> <%= pedido.titular %></td>
+        <td>
+          <%= link_to pedido_path(pedido), class: "btn btn-primary" do %>
+            <i class="glyphicon glyphicon-eye-open"></i> Detalles
+          <% end %>
+
+          <%= link_to pedido_path(pedido), class: "btn btn-danger", method: :delete,data: { confirm: 'Estas seguro de eliminar?' } do %>
+            <i class="glyphicon glyphicon-trash"></i> Cancelar
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
