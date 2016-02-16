@@ -13,11 +13,11 @@
           <% @ultimos_pedidos.each do |reciente| %>
             <tr>
               <td>
-                <%= link_to pedido_path(reciente.pedido_id) do %>
+                <%= link_to pedido_path(reciente) do %>
                   <strong><%= reciente.codigo %></strong>
                 <% end %>
               </td>
-              <td> <%= reciente.titular %></td>
+              <td> <%= reciente.departamento.titular %></td>
             </tr>
           <% end %>
         </tbody>

@@ -16,7 +16,7 @@
     <% @pedidos.each do |pedido| %>
       <tr>
         <td> <strong><%= pedido.codigo %></strong> </td>
-        <td> <%= pedido.titular %></td>
+        <td> <%= pedido.departamento.titular %></td>
         <td>
           <%= link_to pedido_path(pedido), class: "btn btn-primary" do %>
             <i class="glyphicon glyphicon-eye-open"></i> Detalles
