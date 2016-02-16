@@ -4,12 +4,11 @@ class PedidosController < ApplicationController
   end
 
   def show
-    @articulos = Pedido.articulos_pedido(params[:id])
-    @pedido = Pedido.detalles_pedido(params[:id])
+    @pedido = Pedido.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = PedidoPdf.new(@articulos, @pedido)
+        pdf = PedidoPdf.new(@pedido)
         send_data pdf.render, filename: 'pedido.pdf', type: 'application/pdf', disposition: 'inline'
       end
     end

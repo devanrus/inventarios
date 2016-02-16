@@ -1,7 +1,6 @@
 class PedidoPdf < Prawn::Document
-  def initialize(articulos, pedido)
+  def initialize(pedido)
     super()
-    @articulos = articulos
     @pedido = pedido
     @codigo_pedido = @pedido.codigo.to_s
     header
@@ -20,11 +19,11 @@ class PedidoPdf < Prawn::Document
   end
 
   def footer
-    draw_text @pedido.nomuser + " " + @pedido.apellidos, :at => [25, 28]
+    draw_text @pedido.user.nombre + " " + @pedido.user.apellidos, :at => [25, 28]
     draw_text "_________________________________", :at => [10, 25]
     draw_text "Elaboró y Autorizó", :at => [32, 12]
 
-    draw_text @pedido.titular, :at => [350, 28]
+    draw_text @pedido.departamento.titular, :at => [350, 28]
     draw_text "_________________________________", :at => [310, 25]
     draw_text "Firma del Responsable", :at => [370, 12]
   end
@@ -45,13 +44,13 @@ class PedidoPdf < Prawn::Document
 
   def articulos_rows
     [ [{:content => "Titular", :colspan =>2}, {:content => "Número de Orden", :colspan => 2}],
-      [{:content => @pedido.titular, :colspan => 2}, {:content => @codigo_pedido, :colspan => 2}],
+      [{:content => @pedido.departamento.titular, :colspan => 2}, {:content => @codigo_pedido, :colspan => 2}],
       [{:content => "Departamento", :colspan =>2}, {:content => "Fecha", :colspan => 2}],
-      [{:content => @pedido.nombre, :colspan => 2}, {:content => @pedido.created_at.strftime("%d/%m/%Y"), :colspan => 2}],
+      [{:content => @pedido.departamento.nombre, :colspan => 2}, {:content => @pedido.created_at.strftime("%d/%m/%Y"), :colspan => 2}],
       [{:content => "Articulos Solicitados", :colspan => 4}],
       ['Código', 'Descripción', 'Solicitado', 'Surtido'] ] +
-      @articulos.map do |articulo|
-      [articulo.codigo, articulo.descripcion, articulo.solicitado.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse, articulo.surtido.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse]
+      @pedido.enviarpedidos.map do |detalles_pedido|
+      [detalles_pedido.articulo.codigo, detalles_pedido.articulo.descripcion, detalles_pedido.solicitado.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse, detalles_pedido.surtido.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse]
     end
   end
 end

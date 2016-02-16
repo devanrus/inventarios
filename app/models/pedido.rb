@@ -19,27 +19,7 @@ class Pedido < ActiveRecord::Base
       end
     end
 
-    def self.articulos_pedido(pedido_id)
-      Pedido.select('pedidos.id,
-                     articulos.codigo, articulos.descripcion,
-                     enviarpedidos.surtido, enviarpedidos.solicitado')
-            .joins(:articulos)
-            .where(:pedidos => {:id => pedido_id})
-    end
-
-    def self.detalles_pedido(pedido_id)
-      Pedido.select('pedidos.*,
-                    departamentos.titular, departamentos.nombre,
-                    users.nombre as nomuser, users.apellidos')
-            .joins(:departamento, :user).find(pedido_id)
-    end
-
     def self.recientes
-      Pedido.select('departamentos.titular,
-                    pedidos.codigo, pedidos.id as pedido_id, pedidos.created_at')
-            .joins(:departamento)
-            .order("created_at DESC")
-            .limit(9)
-
+      Pedido.order("created_at DESC").limit(9)
     end
 end

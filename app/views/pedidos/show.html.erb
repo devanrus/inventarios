@@ -4,11 +4,11 @@
 
 Orden Número: <%= @pedido.codigo %><br>
 <hr>
-Elaborado por: <%= @pedido.nomuser %> <%= @pedido.apellidos %><br>
+Elaborado por: <%= @pedido.user.nombre %> <%= @pedido.user.apellidos %><br>
 <hr>
 Solicitado por:<br>
-<%= @pedido.titular %><br>
-<%= @pedido.nombre %><br>
+<%= @pedido.departamento.titular %><br>
+<%= @pedido.departamento.nombre %><br>
 <hr>
 
 Fecha del Pedido: <%= @pedido.created_at %>
@@ -22,12 +22,12 @@ Fecha del Pedido: <%= @pedido.created_at %>
     <th>Surtido</th>
   </thead>
   <tbody>
-    <% @articulos.each do |articulo| %>
+    <% @pedido.enviarpedidos.each do |detalles_pedido| %>
       <tr>
-        <td> <%= articulo.codigo %> </td>
-        <td> <%= articulo.descripcion %></td>
-        <td> <%= articulo.solicitado %> </td>
-        <td> <%= articulo.surtido %> </td>
+        <td> <%= detalles_pedido.articulo.codigo %> </td>
+        <td> <%= detalles_pedido.articulo.descripcion %></td>
+        <td> <%= detalles_pedido.solicitado %> </td>
+        <td> <%= detalles_pedido.surtido %> </td>
       </tr>
     <% end %>
   </tbody>
